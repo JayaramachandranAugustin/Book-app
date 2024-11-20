@@ -1,0 +1,21 @@
+.add-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+
+.add-button{
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.add-button:hover{
+    background-color: #3498db;
+    color: #f1f1f1;
+}
