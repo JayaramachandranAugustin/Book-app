@@ -1,0 +1,16 @@
+[
+    {
+        "id":1,
+        "name":"Designing Data-Intensive Applications",
+        "author":"Martin Kleppmann",
+        "year":"2017",
+        "cover":"https://m.media-amazon.com/images/I/91YfNb49PLL.jpg"
+    },
+    {
+        "id":2,
+        "name":"Building Microservices: Designing Fine-Grained Systems",
+        "author":"Sam Newman",
+        "year":"2021",
+        "cover":"https://m.media-amazon.com/images/I/81dmHMoJDjL.jpg"
+    }
+]
