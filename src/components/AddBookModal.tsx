@@ -1,19 +1,20 @@
 import React, { ChangeEvent, useState } from 'react'
 import '../styles/addbookmodal.css'
-import { BookType } from '../App';
 import initialBook from '../data/book.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../state/store';
+import { closeAddModal, openModalFlag } from '../state/slices/addModalSlice';
+import { addBookTolist, BookType } from '../state/slices/bookListSlice';
 
 type AddBookModalProps = {
-    modalOpen: boolean;
-    setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    setBookList: React.Dispatch<React.SetStateAction<BookType[]>>;
-    setOriginalBooksList: React.Dispatch<React.SetStateAction<BookType[]>>;
 }
 
 
-const AddBookModal:React.FC<AddBookModalProps> = ({modalOpen, setModalOpen, setBookList, setOriginalBooksList}: AddBookModalProps) => {
+const AddBookModal:React.FC<AddBookModalProps> = (props: AddBookModalProps) => {
 
   const [formState, setFormState] = useState<BookType>(initialBook);
+  const openModal = useSelector(openModalFlag);
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -29,25 +30,22 @@ const AddBookModal:React.FC<AddBookModalProps> = ({modalOpen, setModalOpen, setB
 
   const addBook = () =>{
 
-    setBookList((prevItems) => {
-      const newBook = { ...formState, id: prevItems.length + 1 }; 
-      const updatedList = [...prevItems, newBook]; 
-      setOriginalBooksList(updatedList); 
-      return updatedList;
-    });
+    
+    const newBook = { ...formState, id: 0}; 
 
-    setModalOpen(false);
+    dispatch(addBookTolist(newBook))
+    dispatch(closeAddModal());
   }
 
   
   return (
   <>
-    { modalOpen && 
+    { openModal && 
     <div className='modal-container'>
       <div className='modal-content'> 
         <div className='modal-header'>
           <h4>Add Book</h4>
-          <button className='close-button' onClick={()=>setModalOpen(false)}>X</button>
+          <button className='close-button' onClick={()=>dispatch(closeAddModal())}>X</button>
         </div>
         <div className='modal-form'>
             <div className='form-element'>

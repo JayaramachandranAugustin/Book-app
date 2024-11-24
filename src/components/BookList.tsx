@@ -1,17 +1,18 @@
 import React from 'react';
 import '../styles/booklist.css'; 
 import Book from './Book';
-import { BookType } from '../App';
+import { useSelector } from 'react-redux';
+import { bookList } from '../state/slices/bookListSlice';
 
 type BookListProps = {
-  bookList: BookType[];
 }
 
 
-const BookList: React.FC<BookListProps> = ({ bookList }:BookListProps) => {
+const BookList: React.FC<BookListProps> = (props:BookListProps) => {
+  const bookListState = useSelector(bookList);
   return (
     <div className="book-list-container">
-      {bookList.map((book) => (
+      {bookListState.map((book) => (
         <Book key={book.id} book={book} />
       ))}
     </div>

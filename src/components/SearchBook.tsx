@@ -1,27 +1,20 @@
 import React, { useState } from 'react';
 import '../styles/searchbook.css'
-import { BookType } from '../App';
+import { useDispatch } from 'react-redux';
+import { filterBooks } from '../state/slices/bookListSlice';
+import { AppDispatch } from '../state/store';
 
 type SearchBookProps = {
-  setBookList: React.Dispatch<React.SetStateAction<BookType[]>>;
-  originalBooksList: BookType[];
 }
-const SearchBook:React.FC<SearchBookProps> = ({ setBookList, originalBooksList }: SearchBookProps) => {
+const SearchBook:React.FC<SearchBookProps> = (props : SearchBookProps) => {
 
   const [searchString, setSearchString] = useState<string>("");
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
     setSearchString(query);
-
-    if (query === "") {
-      setBookList(originalBooksList); 
-    } else {
-      const filteredBooks = originalBooksList.filter((book) =>
-        book.name.toLowerCase().includes(query.toLowerCase())
-      );
-      setBookList(filteredBooks);
-    }
+    dispatch(filterBooks(query));
   };
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/book.css'; 
-import { BookType } from '../App';
+import { BookType } from '../state/slices/bookListSlice';
 
 type BookProps = {
     book:BookType
