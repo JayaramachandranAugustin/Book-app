@@ -1,16 +1,20 @@
 import React from 'react'
 import '../styles/addbook.css'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '../state/store'
+import { openAddModal } from '../state/slices/addModalSlice'
 
 type AddBookProps = {
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AddBook:React.FC<AddBookProps> = ({setModalOpen}: AddBookProps) => {
+const AddBook:React.FC<AddBookProps> = (props: AddBookProps) => {
+
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <>
     <div className='add-container'>
-       <button className='add-button' onClick={()=>setModalOpen(true)}>Add Book</button>
+       <button className='add-button' onClick={() => dispatch(openAddModal())}>Add Book</button>
     </div>
     </>
   )
