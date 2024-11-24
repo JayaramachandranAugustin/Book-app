@@ -3,11 +3,13 @@ import './App.css';
 import BookList from './components/BookList';
 import NavBar from './components/NavBar';
 import AddBookModal from './components/AddBookModal';
+import Quote from './components/Quote';
 
 function App() {
   return (
     <>
       <NavBar/>
+      <Quote/>
       <BookList />
       <AddBookModal/>
     </>
